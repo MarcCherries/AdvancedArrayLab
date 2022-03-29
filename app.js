@@ -220,8 +220,8 @@ console.log (tomatoCheeseOne);
 // BONUS: (come back to this after finishing all)
 //6b. Use the filter method to eliminate duplicates, leaving only distinct values in the array
 function problemSixA(){
-    let cuisineType = dishes.map(function(dish, id){
-        if (dish.cuisine){
+    let cuisineType = dishes.map(function(dish){
+        {
             return dish.cuisine;
         }
     })
@@ -229,21 +229,124 @@ function problemSixA(){
 }
 let cuisineTypeOne = problemSixA();
 console.log (cuisineTypeOne)
+
+function problemSixB(){
+    let cuisineType = dishes.map(function(dish){
+        {
+            return dish.cuisine;
+        }
+    }).filter(function(dish, index, cuisineType){
+        if (dish === cuisineType[index-1]){
+            return false;
+        
+        }
+        else {
+            return true;
+        }
+    })
+    return cuisineType;
+}
+let cuisineTypeTwo = problemSixB();
+console.log (cuisineTypeTwo)
+
 //7. Create a function that will append the cuisine type to the start of the dish's name. Ie, "Italian Pizza"
 //Map 
+function problemSeven(){
+    let newNames = dishes.map(function(dish, id){
+        return dish.cuisine +  ' ' + dish.name
 
 
+    })
+    return newNames
+}
+
+let newNamesONe = problemSeven();
+console.log(newNamesONe);
 //8. Create a function that will append the cuisine type to the start of the dish's name. Then, return only the Vegetarian dish objects. So this function should return objects 11-13 with their names changed to "Vegetarian Lasagna", "Vegetarian Falafel", "Vegetarian Chili"
 //Map, Filter
 
+function problemEight(){
+    let newNamesVeg = dishes.filter(function(dish){
+        if (dish.cuisine === "Vegetarian"){
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+    ).map(function(dish){
+        return dish.cuisine +  ' ' + dish.name;
+
+
+    })
+    return newNamesVeg;
+    
+}
+ let newNamesVegOne = problemEight();
+ console.log(newNamesVegOne)
 
 //BONUS
 //9. Create a function that will return dishes whose ingredients array INCLUDES "chickpea".
 //Hint: You do not want to check the array's indexes to find out what the array INCLUDES.
 //Filter
+function problemNine(){
+    let ingredientCheck = dishes.filter(function(dish){
+        if (dish.ingredients.includes('chickpea')){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+    )
+    return ingredientCheck;
+}
+let ingredientCheckOne = problemNine();
+console.log(ingredientCheckOne);
 
 //10. Create a function that will return the total serving count of all dishes.
 //Must use Reduce, not a loop.
+function problemTen(){
+    let totalServings = dishes.map(function(dish){
+        return dish.servings;
+    }
+    
+    ).reduce(function(sum, current){
+        return sum + current;
+    }
 
+        
+
+    )
+    return totalServings;
+    
+}
+
+
+let servingCountOne = problemTen();
+console.log (servingCountOne);
+
+console.log()
 //11. Create a function that will return an array of any objects that do not share a cuisine type with any other objects.
 
+function problemEleven (){
+    
+    let uniqueMeal = dishes.map(function(dish){
+        return dish.cuisine;
+
+    }
+    ).filter(function(dish, index, uniqueMeal){
+        
+        if (dish === uniqueMeal[index-1]){
+            return false;
+        }
+        else {
+            return true;
+        }
+        
+    })
+    return uniqueMeal;
+}
+let uniqueMealOne = problemEleven();
+
+console.log (uniqueMealOne)
